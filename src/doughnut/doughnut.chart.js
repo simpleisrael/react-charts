@@ -5,18 +5,18 @@ import './doughnut-chart.css'
 import {dChart} from './doughnut.d3'
 
 export function DoughnutChart({data, width, height, transTime, cornerRadius, padAngle, variable, category}) {
-  let doughnut = dChart()
-    .width(width || 700)
-    .height(height || 500)
-    .transTime(transTime || 750)
-    .cornerRadius(cornerRadius || 7) // sets how rounded the corners are on each slice
-    .padAngle(padAngle || 0.015) // effectively dictates the gap between slices
-    .variable(variable || 'accrualCnt')
-    .category(category || 'createdGroup')
-
   useEffect(() => {
+    let doughnut = dChart()
+      .data(data)
+      .width(width || 700)
+      .height(height || 500)
+      .transTime(transTime || 750)
+      .cornerRadius(cornerRadius || 7) // sets how rounded the corners are on each slice
+      .padAngle(padAngle || 0.015) // effectively dictates the gap between slices
+      .variable(variable || 'accrualCnt')
+      .category(category || 'createdGroup')
+
     d3.select('#chart')
-      .datum(data | [])
       .call(doughnut)
 
     return () => {
@@ -36,4 +36,4 @@ DoughnutChart.propTypes = {
   padAngle: PropTypes.number,
   variable: PropTypes.string,
   category: PropTypes.string
-};
+}
