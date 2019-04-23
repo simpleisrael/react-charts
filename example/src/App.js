@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 
-import ExampleComponent from 'react-charts'
+import {DoughnutChart} from 'react-charts'
+
+const chartDemoData = [
+  {'createdGroup': 'Alliance', 'accrualCnt': 55},
+  {'createdGroup': 'Swog', 'accrualCnt': 22},
+  {'createdGroup': 'CEPT', 'accrualCnt': 91}
+];
 
 export default class App extends Component {
   render () {
     return (
       <div>
-        <ExampleComponent text='Modern React component module' />
+        <DoughnutChart data={chartDemoData} />
       </div>
     )
   }
