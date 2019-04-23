@@ -5,7 +5,7 @@ import {dChart} from "./doughnut.d3";
 
 export const DoughnutChart = ({data}) => {
 
-    let doughnut = dChart()
+  let doughnut = dChart()
         .width(700)
         .height(500)
         .transTime(750)
