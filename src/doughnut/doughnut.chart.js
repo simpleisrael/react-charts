@@ -1,28 +1,39 @@
-import React, {useEffect} from 'react';
-import * as d3 from "d3";
+import React, {useEffect} from 'react'
+import PropTypes from 'prop-types'
+import * as d3 from 'd3'
 import './doughnut-chart.css'
-import {dChart} from "./doughnut.d3";
+import {dChart} from './doughnut.d3'
 
-export const DoughnutChart = ({data}) => {
-
+export function DoughnutChart({data, width, height, transTime, cornerRadius, padAngle, variable, category}) {
   let doughnut = dChart()
-        .width(700)
-        .height(500)
-        .transTime(750)
-        .cornerRadius(7) // sets how rounded the corners are on each slice
-        .padAngle(0.015) // effectively dictates the gap between slices
-        .variable('accrualCnt')
-        .category('createdGroup');
+    .width(width || 700)
+    .height(height || 500)
+    .transTime(transTime || 750)
+    .cornerRadius(cornerRadius || 7) // sets how rounded the corners are on each slice
+    .padAngle(padAngle || 0.015) // effectively dictates the gap between slices
+    .variable(variable || 'accrualCnt')
+    .category(category || 'createdGroup')
 
-    useEffect(() => {
+  useEffect(() => {
+    d3.select('#chart')
+      .datum(data | [])
+      .call(doughnut)
 
-        d3.select('#chart')
-            .datum(data)
-            .call(doughnut);
+    return () => {
+      d3.select('#chart > *').remove()
+    }
+  }, data)
 
-        return () => {
-            d3.select("#chart > *").remove();
-        }
-    }, data);
-    return  (<div id="chart"> </div>);
+  return (<div id='chart' />)
+}
+
+DoughnutChart.propTypes = {
+  data: PropTypes.array,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  transTime: PropTypes.number,
+  cornerRadius: PropTypes.number,
+  padAngle: PropTypes.number,
+  variable: PropTypes.string,
+  category: PropTypes.string
 };

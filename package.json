@@ -61,5 +61,6 @@
     "dist"
   ],
   "dependencies": {
+    "d3": "^5.9.2"
   }
 }
