@@ -15,12 +15,12 @@ npm install --save react-charts
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-charts'
+import {DoughnutChart} from 'react-charts'
 
 class Example extends Component {
   render () {
     return (
-      <MyComponent />
+      <DoughnutChart data={} />
     )
   }
 }
